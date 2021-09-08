@@ -3,7 +3,7 @@ resources:
 - name: newman-repo
   type: git
   source:
-    uri: https://github.com/mkreibe/ConcourseCI-Newman.git
+    uri: https://github.com/RickyCooperIBM/postman_demo.git
   
 jobs:
 - name: test-rest-api
@@ -12,4 +12,4 @@ jobs:
   - get: newman-repo
   - task: test-api
     file: newman-repo/newman/newman-task.yml
-    params: { "COLLECTION_URL": "https://raw.githubusercontent.com/mkreibe/ConcourseCI-Newman/master/newman/test-collection.json" }
+    params: { "COLLECTION_URL": "https://raw.githubusercontent.com/RickyCooperIBM/postman_demo/main/newman/test-collection.json?token=AU2CCLRRKMAZI5GJXCZHGGLBHCDRQ" }

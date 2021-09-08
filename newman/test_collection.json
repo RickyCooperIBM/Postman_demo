@@ -1,0 +1,89 @@
+{
+	"info": {
+		"_postman_id": "ade63135-d4c2-41bb-a7b4-09aa7741a20d",
+		"name": "hookb.in",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Status 200', function () {",
+							"\tpm.response.to.have.status(201);",
+							"})",
+							"",
+							"const response = pm.response.json();",
+							"",
+							"pm.test('Success: true', function () {",
+							"    pm.expect(response.success).to.be.false;",
+							"\tpm.response.to.have.status(200);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://hookb.in/aBnx9XNDg9CXQ9kkQn88",
+					"protocol": "https",
+					"host": [
+						"hookb",
+						"in"
+					],
+					"path": [
+						"aBnx9XNDg9CXQ9kkQn88"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Status 200', function () {",
+							"\tpm.response.to.have.status(200);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\" : \"RickyCooper\",\n    \"email\": \"ricky_cooper_@outlook.com\",\n    \"age\" : \"28\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://hookb.in/kxp20KoXldsBjzggjYaw",
+					"protocol": "https",
+					"host": [
+						"hookb",
+						"in"
+					],
+					"path": [
+						"kxp20KoXldsBjzggjYaw"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
