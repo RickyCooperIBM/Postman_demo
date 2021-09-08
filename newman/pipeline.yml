@@ -14,4 +14,24 @@ jobs:
   - task: test-api
     file: newman-repo/newman/newman-task.yml
     params: { "COLLECTION_URL": "https://raw.githubusercontent.com/RickyCooperIBM/postman_demo/main/newman/test_collection.json" }
+  outputs:
+  - name: testReports
 
+- name: read-xml-report
+  plan:
+  - task: read-the-report
+    config:
+      platform: linux
+      image_resource:
+        type: registry-image
+        source:
+          repository: busybox
+      inputs:
+      - name: testReports
+      run:
+        path: sh
+        args:
+        - -cx
+        - |
+          ls -l .
+          cat the-artifact/report.xml
