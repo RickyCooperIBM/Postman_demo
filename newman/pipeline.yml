@@ -14,8 +14,6 @@ jobs:
   - task: test-api
     file: newman-repo/newman/newman-task.yml
     params: { "COLLECTION_URL": "https://raw.githubusercontent.com/RickyCooperIBM/postman_demo/main/newman/test_collection.json" }
-  outputs:
-  - name: testReports
 
   - task: read-the-report
     config:

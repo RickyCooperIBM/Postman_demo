@@ -8,6 +8,9 @@ image_resource:
 inputs:
 - name: newman-repo
 
+outputs:
+- name: testReports
+
 run:
   path: sh
   args: [ "newman-repo/newman/run-newman.sh" ]
