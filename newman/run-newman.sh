@@ -15,6 +15,7 @@ echo "New Newman Version: " `newman --version`
 # using the v3 syntax.
 mkdir newman
 newman run $COLLECTION_URL --reporters cli,junit --reporter-junit-export "newman/report.xml" --bail
+cd newman
 ls
 
 echo "Complete!"
