@@ -12,4 +12,4 @@ jobs:
   - get: newman-repo
   - task: test-api
     file: newman-repo/newman/newman-task.yml
-    params: { "COLLECTION_URL": "https://raw.githubusercontent.com/RickyCooperIBM/postman_demo/main/newman/test-collection.json?token=AU2CCLRRKMAZI5GJXCZHGGLBHCDRQ" }
+    params: { "COLLECTION_URL": "https://raw.githubusercontent.com/RickyCooperIBM/postman_demo/main/newman/test_collection.json" }
