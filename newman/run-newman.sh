@@ -17,6 +17,6 @@ mkdir newman
 newman run $COLLECTION_URL --reporters cli,junit --reporter-junit-export "newman-repo/report.xml" --bail
 ls
 cd newman-repo
-ls
+git status
 
 echo "Complete!"
