@@ -17,9 +17,6 @@ jobs:
   outputs:
   - name: testReports
 
-- name: read-xml-report
-  public: true
-  plan:
   - task: read-the-report
     config:
       platform: linux
