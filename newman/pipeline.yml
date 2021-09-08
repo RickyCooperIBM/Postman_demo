@@ -18,6 +18,7 @@ jobs:
   - name: testReports
 
 - name: read-xml-report
+  public: true
   plan:
   - task: read-the-report
     config:
@@ -34,4 +35,4 @@ jobs:
         - -cx
         - |
           ls -l .
-          cat the-artifact/report.xml
+          cat testReports/report.xml
