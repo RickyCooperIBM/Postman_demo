@@ -6,6 +6,7 @@ resources:
     uri: https://github.com/RickyCooperIBM/postman_demo.git
   
 jobs:
+
 - name: test-rest-api
   public: true
   plan:
@@ -13,3 +14,4 @@ jobs:
   - task: test-api
     file: newman-repo/newman/newman-task.yml
     params: { "COLLECTION_URL": "https://raw.githubusercontent.com/RickyCooperIBM/postman_demo/main/newman/test_collection.json" }
+
