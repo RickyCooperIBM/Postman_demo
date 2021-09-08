@@ -13,6 +13,6 @@ npm install newman --global --no-spin
 echo "New Newman Version: " `newman --version`
 
 # using the v3 syntax.
-newman run $COLLECTION_URL --bail
+newman run $COLLECTION_URL --reporters cli,junit,htmlextra --reporter-junit-export "newman/report.xml" --bail
 
 echo "Complete!"
