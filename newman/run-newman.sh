@@ -16,5 +16,9 @@ echo "New Newman Version: " `newman --version`
 cd newman-repo
 mkdir testReports 
 newman run $COLLECTION_URL --reporters cli,junit --reporter-junit-export "newman-repo/testReports/report.xml"
+cd newman-repo
+ls
+cd testReports
+ls
 
 echo "Complete!"
