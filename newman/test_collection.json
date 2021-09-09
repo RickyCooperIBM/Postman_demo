@@ -20,7 +20,6 @@
 							"",
 							"pm.test('Success: true', function () {",
 							"    pm.expect(response.success).to.be.false;",
-							"\tpm.response.to.have.status(200);",
 							"})"
 						],
 						"type": "text/javascript"
@@ -31,14 +30,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://hookb.in/aBnx9XNDg9CXQ9kkQn88",
+					"raw": "https://hookb.in/kxp20KoXldsBjzggjYaw",
 					"protocol": "https",
 					"host": [
 						"hookb",
 						"in"
 					],
 					"path": [
-						"aBnx9XNDg9CXQ9kkQn88"
+						"kxp20KoXldsBjzggjYaw"
 					]
 				}
 			},
@@ -53,6 +52,12 @@
 						"exec": [
 							"pm.test('Status 200', function () {",
 							"\tpm.response.to.have.status(200);",
+							"})",
+							"",
+							"const response = pm.response.json();",
+							"",
+							"pm.test('Status 200', function () {",
+							"    pm.expect(response.username).to.eql(\"RickyCoopert\");",
 							"})"
 						],
 						"type": "text/javascript"
