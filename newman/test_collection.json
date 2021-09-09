@@ -20,7 +20,9 @@
 							"",
 							"pm.test('Success: true', function () {",
 							"    pm.expect(response.success).to.be.false;",
-							"})"
+							"})",
+							"",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -58,7 +60,11 @@
 							"",
 							"pm.test('Status 200', function () {",
 							"    pm.expect(response.username).to.eql(\"RickyCoopert\");",
-							"})"
+							"})",
+							"",
+							"if(summary.run.failures.length !== 0){",
+							"    process.exit(-1);",
+							"}"
 						],
 						"type": "text/javascript"
 					}
