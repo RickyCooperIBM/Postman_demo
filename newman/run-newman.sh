@@ -8,12 +8,12 @@ echo "NPM Version:        " `npm -v`
 echo "Old Newman Version: " `newman --version`
 
 echo "  Install newest newman version."
-npm install newman --global --no-spin
+npm install newman newman-reporter-htmlextra --global --no-spin
 
 echo "New Newman Version: " `newman --version`
 
 # using the v3 syntax.
 mkdir testReports 
-newman run $COLLECTION_URL --reporters cli,junit --reporter-junit-export "testReports/report.xml"
+newman run $COLLECTION_URL --reporters cli,junit,htmlextra --reporter-junit-export "testReports/report.xml" --reporter-htmlextra-export  "testReports/report.html" 
 
 echo "Complete!"
