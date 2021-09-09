@@ -6,7 +6,7 @@ echo "  Collection URL:  " $COLLECTION_URL
 echo "Node Version:       " `node -v`
 echo "NPM Version:        " `npm -v`
 echo "Old Newman Version: " `newman --version`
-echo "Git Version:        " `git --version`
+
 echo "  Install newest newman version."
 npm install newman --global --no-spin
 
@@ -14,8 +14,6 @@ echo "New Newman Version: " `newman --version`
 
 # using the v3 syntax.
 mkdir testReports 
-newman run $COLLECTION_URL --bail --reporters cli,junit --reporter-junit-export "testReports/report.xml"
-ls
-git --version
+newman run $COLLECTION_URL --reporters cli,junit --reporter-junit-export "testReports/report.xml"
 
 echo "Complete!"
