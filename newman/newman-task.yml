@@ -22,4 +22,4 @@ run:
       ls
       cd newman
       ls
-      [run-newman.sh]
+      run-newman.sh
