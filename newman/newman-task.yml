@@ -20,4 +20,6 @@ run:
       ls
       cd newman-repo
       ls
+      cd newman
+      ls
       [newman-repo/newman/run-newman.sh]
