@@ -13,7 +13,11 @@ npm install newman newman-reporter-htmlextra --global --no-spin
 echo "New Newman Version: " `newman --version`
 
 # using the v3 syntax.
+echo "$COLLECTION_URL"
+echo "$TRELLO_TOKEN"
+echo "$TRELLO_KEY"
+
 mkdir testReports 
-newman run $COLLECTION_URL --reporters cli,junit,htmlextra --reporter-junit-export "testReports/report.xml" --reporter-htmlextra-export  "testReports/report.html" 
+newman run $COLLECTION_URL --global-var trello_key=$trello_key --global-var trello_token=$trello_token --reporters cli,junit,htmlextra --reporter-junit-export "testReports/report.xml" --reporter-htmlextra-export  "testReports/report.html" 
 
 echo "Complete!"
