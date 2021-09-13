@@ -1,0 +1,19 @@
+{
+	"id": "8717564a-4d21-4457-9cfa-4f592369181e",
+	"name": "TRELLO_ENV",
+	"values": [
+		{
+			"key": "key",
+			"value": "YOUR KEY ",
+			"enabled": true
+		},
+		{
+			"key": "token",
+			"value": "YOUR TOKEN",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2021-09-13T10:36:58.225Z",
+	"_postman_exported_using": "Postman/8.11.1"
+}
