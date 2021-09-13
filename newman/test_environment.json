@@ -3,17 +3,42 @@
 	"name": "TRELLO_ENV",
 	"values": [
 		{
-			"key": "trello_key",
+			"key": "TRELLO_KEY",
 			"value": "YOUR KEY ",
 			"enabled": true
 		},
 		{
-			"key": "trello_token",
+			"key": "TRELLO_TOKEN",
 			"value": "YOUR TOKEN",
+			"enabled": true
+		},
+		{
+			"key": "BOARD_NAME",
+			"value": "Concorse Pipeline",
+			"enabled": true
+		},
+		{
+			"key": "BOARD_ID",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "BOARD_COLOR",
+			"value": "purple",
+			"enabled": true
+		},
+		{
+			"key": "LIST_ID",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "CARD_ID",
+			"value": "",
 			"enabled": true
 		}
 	],
 	"_postman_variable_scope": "environment",
-	"_postman_exported_at": "2021-09-13T10:39:29.998Z",
+	"_postman_exported_at": "2021-09-13T12:51:44.252Z",
 	"_postman_exported_using": "Postman/8.11.1"
 }
