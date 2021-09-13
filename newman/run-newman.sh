@@ -18,6 +18,6 @@ echo "$TRELLO_TOKEN"
 echo "$TRELLO_KEY"
 
 mkdir testReports 
-newman run $COLLECTION_URL --global-var trello_key=$TRELLO_KEY --global-var trello_token=$TRELLO_TOKEN --reporters cli,junit,htmlextra --reporter-junit-export "testReports/report.xml" --reporter-htmlextra-export  "testReports/report.html" 
+newman run $COLLECTION_URL --env-var key=$TRELLO_KEY --env-var token=$TRELLO_TOKEN --reporters cli,junit,htmlextra --reporter-junit-export "testReports/report.xml" --reporter-htmlextra-export  "testReports/report.html" -e $ENV_URL
 
 echo "Complete!"
