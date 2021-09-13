@@ -16,5 +16,4 @@ run:
     args:
     - "-c"
     - |
-      set -e
       newman-repo/newman/run-newman.sh
