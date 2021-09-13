@@ -22,4 +22,4 @@ run:
       ls
       cd newman
       ls
-      Chmod +X run-newman.sh
+      chmod +x run-newman.sh
