@@ -12,9 +12,9 @@ outputs:
 - name: testReports
 
 run:
-  path: sh
-  args:
-  - "-c"
-  - |
-    set -e
-    newman-repo/newman/run-newman.sh
+    path: bash
+    args:
+    - "-c"
+    - |
+      set -e
+      newman-repo/newman/run-newman.sh
