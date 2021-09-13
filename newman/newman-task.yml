@@ -18,4 +18,6 @@ run:
     - |
       set -e
       ls
+      cd newman-repo
+      ls
       [newman-repo/newman/run-newman.sh]
