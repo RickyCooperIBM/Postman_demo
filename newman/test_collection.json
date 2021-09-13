@@ -281,7 +281,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"idList\" : \"{{LIST_ID}}\",\n    \"name\" : \"Learn Postman\",\n    \"desc\" : \"To reach my goals I need to have a firm understanding of postman and what are its advantages\"\n}",
+					"raw": "{\n    \"idList\" : \"{{LIST_ID}}\",\n    \"name\" : \"Learn Toastman\",\n    \"desc\" : \"To reach my goals I need to have a firm understanding of postman and what are its advantages\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -471,7 +471,9 @@
 							"",
 							"postman.setNextRequest(\"GET ALL Existing Boards\");",
 							"",
-							""
+							"if(summary.run.failures.length !== 0){",
+							"    process.exit(-1);",
+							"}"
 						],
 						"type": "text/javascript"
 					}
