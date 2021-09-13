@@ -12,7 +12,7 @@ outputs:
 - name: testReports
 
 run:
-    path: bash
+    path: sh
     args:
     - "-c"
     - |
