@@ -13,4 +13,8 @@ outputs:
 
 run:
   path: sh
-  args: [ "newman-repo/newman/run-newman.sh" ]
+  args:
+  - "-c"
+  - |
+    set -e
+    newman-repo/newman/run-newman.sh
