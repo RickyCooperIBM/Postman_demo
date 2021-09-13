@@ -17,4 +17,5 @@ run:
     - "-c"
     - |
       set -e
+      ls
       [newman-repo/newman/run-newman.sh]
