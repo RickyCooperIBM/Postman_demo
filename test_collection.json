@@ -93,6 +93,13 @@
 							"",
 							"const response = pm.response.json();",
 							"",
+							"",
+							"var req = JSON.parse(request.data) ",
+							"",
+							"pm.test(\"Body reqest data defaultLists\", function () {",
+							"    pm.expect(req.defaultLists).to.be.false",
+							"});",
+							"",
 							"pm.test('Board name should be \"Concorse Pipeline\"', function () {",
 							"    pm.expect(response.name).to.equal(\"Concorse Pipeline\");",
 							"})",
@@ -104,6 +111,7 @@
 							"pm.test('Background Color should be purple', function () {",
 							"    pm.expect(response.prefs.background).to.equal(\"purple\");",
 							"})",
+							"",
 							"",
 							"pm.environment.set(\"BOARD_ID\", response.id);",
 							""
@@ -126,7 +134,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"prefs_background\" : \"red\",\n    \"name\" : \"{{BOARD_NAME}}\",\n    \"defaultLists\" : \"false\"\n}",
+					"raw": "{\n    \"prefs_background\" : \"red\",\n    \"name\" : \"{{BOARD_NAME}}\",\n    \"defaultLists\" : false\n}",
 					"options": {
 						"raw": {
 							"language": "json"
