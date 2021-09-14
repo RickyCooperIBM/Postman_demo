@@ -97,7 +97,7 @@
 							"var req = JSON.parse(request.data) ",
 							"",
 							"pm.test(\"Body reqest data defaultLists\", function () {",
-							"    pm.expect(req.defaultLists).to.be.false",
+							"    pm.expect(req.defaultLists).to.be.true",
 							"});",
 							"",
 							"pm.test('Board name should be \"Concorse Pipeline\"', function () {",
