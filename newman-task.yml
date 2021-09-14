@@ -17,4 +17,4 @@ run:
     - "-c"
     - |
       set -e
-      sh newman-repo/newman/run-newman.sh
+      sh newman-repo/run-newman.sh
