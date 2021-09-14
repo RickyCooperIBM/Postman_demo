@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "GET All Existing Boards",
+			"name": "GET All Existing Boards Copy",
 			"event": [
 				{
 					"listen": "test",
@@ -32,6 +32,7 @@
 					"listen": "prerequest",
 					"script": {
 						"exec": [
+							"console.log(\"Sending request to fetch all existing boards attached to this user\");",
 							""
 						],
 						"type": "text/javascript"
@@ -125,7 +126,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"prefs_background\" : \"red\"\n}",
+					"raw": "{\n    \"prefs_background\" : \"red\",\n    \"name\" : \"{{BOARD_NAME}}\",\n    \"defaultLists\" : \"false\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -133,7 +134,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://api.trello.com/1/boards/?name={{BOARD_NAME}}&key={{TRELLO_KEY}}&token={{TRELLO_TOKEN}}",
+					"raw": "https://api.trello.com/1/boards/?token={{TRELLO_TOKEN}}&key={{TRELLO_KEY}}",
 					"protocol": "https",
 					"host": [
 						"api",
@@ -147,21 +148,12 @@
 					],
 					"query": [
 						{
-							"key": "name",
-							"value": "{{BOARD_NAME}}"
-						},
-						{
-							"key": "prefs_background",
-							"value": "{{BOARD_COLOUR}}",
-							"disabled": true
+							"key": "token",
+							"value": "{{TRELLO_TOKEN}}"
 						},
 						{
 							"key": "key",
 							"value": "{{TRELLO_KEY}}"
-						},
-						{
-							"key": "token",
-							"value": "{{TRELLO_TOKEN}}"
 						}
 					]
 				}
@@ -233,6 +225,80 @@
 						{
 							"key": "token",
 							"value": "{{TRELLO_TOKEN}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET List IN PROGRESS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Status 200', function () {",
+							"\tpm.response.to.have.status(200);",
+							"})",
+							"",
+							"const response = pm.response.json();",
+							"",
+							"pm.test('List Name is \"In Progress\"', function () {",
+							"    pm.expect(response.name).to.eql(\"IN PROGRESS\");",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(\"Sending request to fetch all existing boards attached to this user\");",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.trello.com/1/lists/:{{LIST_ID}}?key={{TRELLO_KEY}}&token={{TRELLO_TOKEN}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"trello",
+						"com"
+					],
+					"path": [
+						"1",
+						"lists",
+						":{{LIST_ID}}"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{TRELLO_KEY}}"
+						},
+						{
+							"key": "token",
+							"value": "{{TRELLO_TOKEN}}"
+						}
+					],
+					"variable": [
+						{
+							"key": "{{LIST_ID}}",
+							"value": "{{LIST_ID}}"
 						}
 					]
 				}
@@ -315,7 +381,76 @@
 			"response": []
 		},
 		{
-			"name": "CREATE New List DONE",
+			"name": "CREATE  New Checklist Item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Status 200', function () {",
+							"\tpm.response.to.have.status(200);",
+							"})",
+							"",
+							"var response = pm.response.json();",
+							"",
+							"pm.test('Checklist name is correct', function () {",
+							"    pm.expect(response.name).to.eql(\"Complete postman udemy course\");",
+							"})",
+							"",
+							"pm.test('Is card assined to the correct card', function () {",
+							"    pm.expect(response.idCard).to.eql(pm.environment.get(\"CARD_ID\"));",
+							"})",
+							"",
+							"pm.test('Is card assined to the correct List', function () {",
+							"    pm.expect(response.idoard).to.eql(pm.environment.get(\"BOARD_ID\"));",
+							"})",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"idCard\" : \"{{CARD_ID}}\",\n    \"name\" : \"Complete postman udemy course\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.trello.com/1/checklists?key={{TRELLO_KEY}}&token={{TRELLO_TOKEN}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"trello",
+						"com"
+					],
+					"path": [
+						"1",
+						"checklists"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{TRELLO_KEY}}"
+						},
+						{
+							"key": "token",
+							"value": "{{TRELLO_TOKEN}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE New List TESTING",
 			"event": [
 				{
 					"listen": "test",
@@ -328,13 +463,17 @@
 							"var response = pm.response.json();",
 							"",
 							"",
-							"pm.test('List Name is \"DONE\"', function () {",
-							"    pm.expect(response.name).to.eql(\"DONE\");",
+							"pm.test('List Name is \"TESTING\"', function () {",
+							"    pm.expect(response.name).to.eql(\"TESTING\");",
 							"})",
 							"",
 							"pm.test('Board should be private', function () {",
 							"    pm.expect(response.closed).to.eql(false);",
 							"})",
+							"",
+							"pm.test(\"Check if limits are empty\", function () {",
+							"    pm.expect(response.limits).to.be.empty",
+							"});",
 							"",
 							"pm.environment.set(\"LIST_ID\", response.id);",
 							""
@@ -348,7 +487,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\" : \"DONE\"\n}",
+					"raw": "{\n    \"name\" : \"TESTING\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -386,6 +525,80 @@
 			"response": []
 		},
 		{
+			"name": "GET List TESTING",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Status 200', function () {",
+							"\tpm.response.to.have.status(200);",
+							"})",
+							"",
+							"const response = pm.response.json();",
+							"",
+							"pm.test('List Name is \"In Test\"', function () {",
+							"    pm.expect(response.name).to.eql(\"Test\");",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(\"Sending request to fetch all existing boards attached to this user\");",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.trello.com/1/lists/:{{LIST_ID}}?key={{TRELLO_KEY}}&token={{TRELLO_TOKEN}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"trello",
+						"com"
+					],
+					"path": [
+						"1",
+						"lists",
+						":{{LIST_ID}}"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{TRELLO_KEY}}"
+						},
+						{
+							"key": "token",
+							"value": "{{TRELLO_TOKEN}}"
+						}
+					],
+					"variable": [
+						{
+							"key": "{{LIST_ID}}",
+							"value": "{{LIST_ID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "PUT Move Card",
 			"event": [
 				{
@@ -396,7 +609,12 @@
 							"\tpm.response.to.have.status(200);",
 							"})",
 							"",
-							"var response = pm.response.json();"
+							"var response = pm.response.json();",
+							"",
+							"pm.test(\"Correct List Location\", function () {",
+							"    pm.expect(response.idList).to.eql(pm.environment.get(\"LIST_ID\"));",
+							"});",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -440,7 +658,7 @@
 					"variable": [
 						{
 							"key": "{{CARD_ID}}",
-							"value": null
+							"value": "{{CARD_ID}}"
 						}
 					]
 				}
@@ -448,7 +666,7 @@
 			"response": []
 		},
 		{
-			"name": "DELETE All Existing Boards",
+			"name": "DELETE Board",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -469,7 +687,6 @@
 							"\tpm.response.to.have.status(200);",
 							"})",
 							"",
-							"postman.setNextRequest(\"GET ALL Existing Boards\");",
 							"",
 							"if(summary.run.failures.length !== 0){",
 							"    process.exit(-1);",
