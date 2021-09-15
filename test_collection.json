@@ -92,13 +92,17 @@
 							"})",
 							"",
 							"const response = pm.response.json();",
-							"",
-							"",
-							"var req = JSON.parse(request.data) ",
+							"const req = JSON.parse(request.data) ",
 							"",
 							"pm.test(\"Body reqest data defaultLists\", function () {",
 							"    pm.expect(req.defaultLists).to.be.true",
 							"});",
+							"",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.closed).to.eql(false);",
+							"});",
+							"",
 							"",
 							"pm.test('Board name should be \"Concorse Pipeline\"', function () {",
 							"    pm.expect(response.name).to.equal(\"Concorse Pipeline\");",
@@ -134,7 +138,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"prefs_background\" : \"red\",\n    \"name\" : \"{{BOARD_NAME}}\",\n    \"defaultLists\" : false\n}",
+					"raw": "{\n    \"prefs_background\" : \"red\",\n    \"name\" : \"{{BOARD_NAME}}\",\n    \"defaultLists\" : false,\n    \"key\": \"{{TRELLO_KEY}}\",\n    \"token\":\"{{TRELLO_TOKEN}}\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -142,7 +146,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://api.trello.com/1/boards/?token={{TRELLO_TOKEN}}&key={{TRELLO_KEY}}",
+					"raw": "https://api.trello.com/1/boards/",
 					"protocol": "https",
 					"host": [
 						"api",
@@ -153,16 +157,6 @@
 						"1",
 						"boards",
 						""
-					],
-					"query": [
-						{
-							"key": "token",
-							"value": "{{TRELLO_TOKEN}}"
-						},
-						{
-							"key": "key",
-							"value": "{{TRELLO_KEY}}"
-						}
 					]
 				}
 			},
@@ -202,7 +196,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\" : \"IN PROGRESS\"\n}",
+					"raw": "{\n    \"name\" : \"IN PROGRESS\",\n    \"key\": \"{{TRELLO_KEY}}\",\n    \"token\":\"{{TRELLO_TOKEN}}\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -210,7 +204,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://api.trello.com/1/lists?idBoard={{BOARD_ID}}&key={{TRELLO_KEY}}&token={{TRELLO_TOKEN}}",
+					"raw": "https://api.trello.com/1/lists?idBoard={{BOARD_ID}}",
 					"protocol": "https",
 					"host": [
 						"api",
@@ -225,14 +219,6 @@
 						{
 							"key": "idBoard",
 							"value": "{{BOARD_ID}}"
-						},
-						{
-							"key": "key",
-							"value": "{{TRELLO_KEY}}"
-						},
-						{
-							"key": "token",
-							"value": "{{TRELLO_TOKEN}}"
 						}
 					]
 				}
@@ -271,6 +257,9 @@
 					}
 				}
 			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [
@@ -280,6 +269,15 @@
 						"type": "text"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"key\": \"{{TRELLO_KEY}}\",\n    \"token\":\"{{TRELLO_TOKEN}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "https://api.trello.com/1/lists/:{{LIST_ID}}?key={{TRELLO_KEY}}&token={{TRELLO_TOKEN}}",
 					"protocol": "https",
@@ -355,7 +353,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"idList\" : \"{{LIST_ID}}\",\n    \"name\" : \"Learn Toastman\",\n    \"desc\" : \"To reach my goals I need to have a firm understanding of postman and what are its advantages\"\n}",
+					"raw": "{\n    \"idList\" : \"{{LIST_ID}}\",\n    \"name\" : \"Learn Toastman\",\n    \"desc\" : \"To reach my goals I need to have a firm understanding of postman and what are its advantages\",\n    \"key\": \"{{TRELLO_KEY}}\",\n    \"token\":\"{{TRELLO_TOKEN}}\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -363,7 +361,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://api.trello.com/1/cards?key={{TRELLO_KEY}}&token={{TRELLO_TOKEN}}",
+					"raw": "https://api.trello.com/1/cards",
 					"protocol": "https",
 					"host": [
 						"api",
@@ -373,16 +371,6 @@
 					"path": [
 						"1",
 						"cards"
-					],
-					"query": [
-						{
-							"key": "key",
-							"value": "{{TRELLO_KEY}}"
-						},
-						{
-							"key": "token",
-							"value": "{{TRELLO_TOKEN}}"
-						}
 					]
 				}
 			},
@@ -424,7 +412,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"idCard\" : \"{{CARD_ID}}\",\n    \"name\" : \"Complete postman udemy course\"\n}",
+					"raw": "{\n    \"idCard\" : \"{{CARD_ID}}\",\n    \"name\" : \"Complete postman udemy course\",\n    \"key\": \"{{TRELLO_KEY}}\",\n    \"token\":\"{{TRELLO_TOKEN}}\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -432,7 +420,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://api.trello.com/1/checklists?key={{TRELLO_KEY}}&token={{TRELLO_TOKEN}}",
+					"raw": "https://api.trello.com/1/checklists",
 					"protocol": "https",
 					"host": [
 						"api",
@@ -442,16 +430,6 @@
 					"path": [
 						"1",
 						"checklists"
-					],
-					"query": [
-						{
-							"key": "key",
-							"value": "{{TRELLO_KEY}}"
-						},
-						{
-							"key": "token",
-							"value": "{{TRELLO_TOKEN}}"
-						}
 					]
 				}
 			},
@@ -495,7 +473,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\" : \"TESTING\"\n}",
+					"raw": "{\n    \"name\" : \"TESTING\",\n    \"key\": \"{{TRELLO_KEY}}\",\n    \"token\":\"{{TRELLO_TOKEN}}\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -503,7 +481,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://api.trello.com/1/lists?idBoard={{BOARD_ID}}&key={{TRELLO_KEY}}&token={{TRELLO_TOKEN}}",
+					"raw": "https://api.trello.com/1/lists?idBoard={{BOARD_ID}}",
 					"protocol": "https",
 					"host": [
 						"api",
@@ -518,14 +496,6 @@
 						{
 							"key": "idBoard",
 							"value": "{{BOARD_ID}}"
-						},
-						{
-							"key": "key",
-							"value": "{{TRELLO_KEY}}"
-						},
-						{
-							"key": "token",
-							"value": "{{TRELLO_TOKEN}}"
 						}
 					]
 				}
@@ -564,6 +534,9 @@
 					}
 				}
 			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [
@@ -573,8 +546,17 @@
 						"type": "text"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"key\": \"{{TRELLO_KEY}}\",\n    \"token\":\"{{TRELLO_TOKEN}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "https://api.trello.com/1/lists/:{{LIST_ID}}?key={{TRELLO_KEY}}&token={{TRELLO_TOKEN}}",
+					"raw": "https://api.trello.com/1/lists/:{{LIST_ID}}",
 					"protocol": "https",
 					"host": [
 						"api",
@@ -586,20 +568,10 @@
 						"lists",
 						":{{LIST_ID}}"
 					],
-					"query": [
-						{
-							"key": "key",
-							"value": "{{TRELLO_KEY}}"
-						},
-						{
-							"key": "token",
-							"value": "{{TRELLO_TOKEN}}"
-						}
-					],
 					"variable": [
 						{
 							"key": "{{LIST_ID}}",
-							"value": "{{LIST_ID}}"
+							"value": null
 						}
 					]
 				}
@@ -633,7 +605,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"idList\" : \"{{LIST_ID}}\"\n}",
+					"raw": "{\n    \"idList\" : \"{{LIST_ID}}\",\n    \"key\": \"{{TRELLO_KEY}}\",\n    \"token\":\"{{TRELLO_TOKEN}}\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -641,7 +613,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://api.trello.com/1/cards/:{{CARD_ID}}?key={{TRELLO_KEY}}&token={{TRELLO_TOKEN}}",
+					"raw": "https://api.trello.com/1/cards/:{{CARD_ID}}",
 					"protocol": "https",
 					"host": [
 						"api",
@@ -652,16 +624,6 @@
 						"1",
 						"cards",
 						":{{CARD_ID}}"
-					],
-					"query": [
-						{
-							"key": "key",
-							"value": "{{TRELLO_KEY}}"
-						},
-						{
-							"key": "token",
-							"value": "{{TRELLO_TOKEN}}"
-						}
 					],
 					"variable": [
 						{
@@ -707,8 +669,17 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"key\": \"{{TRELLO_KEY}}\",\n    \"token\":\"{{TRELLO_TOKEN}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "https://api.trello.com/1/boards/:{{BOARD_ID}}?key={{TRELLO_KEY}}&token={{TRELLO_TOKEN}}",
+					"raw": "https://api.trello.com/1/boards/:{{BOARD_ID}}",
 					"protocol": "https",
 					"host": [
 						"api",
@@ -719,16 +690,6 @@
 						"1",
 						"boards",
 						":{{BOARD_ID}}"
-					],
-					"query": [
-						{
-							"key": "key",
-							"value": "{{TRELLO_KEY}}"
-						},
-						{
-							"key": "token",
-							"value": "{{TRELLO_TOKEN}}"
-						}
 					],
 					"variable": [
 						{
