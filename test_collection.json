@@ -4,11 +4,9 @@
 		"name": "Trello",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
-	"item": [
-		{
+	"item": [{
 			"name": "GET All Existing Boards Copy",
-			"event": [
-				{
+			"event": [{
 					"listen": "test",
 					"script": {
 						"exec": [
@@ -44,13 +42,11 @@
 			},
 			"request": {
 				"method": "GET",
-				"header": [
-					{
-						"key": "",
-						"value": "",
-						"type": "text"
-					}
-				],
+				"header": [{
+					"key": "",
+					"value": "",
+					"type": "text"
+				}],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"key\": \"{{TRELLO_KEY}}\",\n    \"token\": \"{{TRELLO_TOKEN}}\"\n}",
@@ -70,20 +66,17 @@
 						"me",
 						"boards"
 					],
-					"query": [
-						{
-							"key": "fields",
-							"value": "name,url"
-						}
-					]
+					"query": [{
+						"key": "fields",
+						"value": "name,url"
+					}]
 				}
 			},
 			"response": []
 		},
 		{
 			"name": "CREATE New Board",
-			"event": [
-				{
+			"event": [{
 					"listen": "test",
 					"script": {
 						"exec": [
@@ -160,33 +153,31 @@
 		},
 		{
 			"name": "CREATE New List IN PROGRESS",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test('Status 200', function () {",
-							"\tpm.response.to.have.status(200);",
-							"})",
-							"",
-							"var response = pm.response.json();",
-							"",
-							"",
-							"pm.test('List Name is \"In Progress\"', function () {",
-							"    pm.expect(response.name).to.eql(\"IN PROGRESS\");",
-							"})",
-							"",
-							"pm.test('Board should be private', function () {",
-							"    pm.expect(response.closed).to.eql(false);",
-							"})",
-							"",
-							"pm.environment.set(\"LIST_ID\", response.id);",
-							""
-						],
-						"type": "text/javascript"
-					}
+			"event": [{
+				"listen": "test",
+				"script": {
+					"exec": [
+						"pm.test('Status 200', function () {",
+						"\tpm.response.to.have.status(200);",
+						"})",
+						"",
+						"var response = pm.response.json();",
+						"",
+						"",
+						"pm.test('List Name is \"In Progress\"', function () {",
+						"    pm.expect(response.name).to.eql(\"IN PROGRESS\");",
+						"})",
+						"",
+						"pm.test('Board should be private', function () {",
+						"    pm.expect(response.closed).to.eql(false);",
+						"})",
+						"",
+						"pm.environment.set(\"LIST_ID\", response.id);",
+						""
+					],
+					"type": "text/javascript"
 				}
-			],
+			}],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -207,20 +198,17 @@
 					"path": [
 						"lists"
 					],
-					"query": [
-						{
-							"key": "idBoard",
-							"value": "{{BOARD_ID}}"
-						}
-					]
+					"query": [{
+						"key": "idBoard",
+						"value": "{{BOARD_ID}}"
+					}]
 				}
 			},
 			"response": []
 		},
 		{
 			"name": "GET List IN PROGRESS",
-			"event": [
-				{
+			"event": [{
 					"listen": "test",
 					"script": {
 						"exec": [
@@ -254,13 +242,11 @@
 			},
 			"request": {
 				"method": "GET",
-				"header": [
-					{
-						"key": "",
-						"value": "",
-						"type": "text"
-					}
-				],
+				"header": [{
+					"key": "",
+					"value": "",
+					"type": "text"
+				}],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"key\": \"{{TRELLO_KEY}}\",\n    \"token\":\"{{TRELLO_TOKEN}}\"\n}",
@@ -279,53 +265,49 @@
 						"lists",
 						":{{LIST_ID}}"
 					],
-					"variable": [
-						{
-							"key": "{{LIST_ID}}",
-							"value": "{{LIST_ID}}"
-						}
-					]
+					"variable": [{
+						"key": "{{LIST_ID}}",
+						"value": "{{LIST_ID}}"
+					}]
 				}
 			},
 			"response": []
 		},
 		{
 			"name": "CREATE  New Card",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test('Status 200', function () {",
-							"\tpm.response.to.have.status(200);",
-							"})",
-							"",
-							"var response = pm.response.json();",
-							"",
-							"pm.test('card Name is Lean Postman', function () {",
-							"    pm.expect(response.name).to.eql(\"Learn Postman\");",
-							"})",
-							"",
-							"pm.test('Is card assined to the correct Board', function () {",
-							"    pm.expect(response.idBoard).to.eql(pm.environment.get(\"BOARD_ID\"));",
-							"})",
-							"",
-							"pm.test('Is card assined to the correct List', function () {",
-							"    pm.expect(response.idList).to.eql(pm.environment.get(\"LIST_ID\"));",
-							"})",
-							"",
-							"pm.test('Card has no votes or attachments', function () {",
-							"    pm.expect(response.votes).to.eql(undefined);",
-							"    pm.expect(response.attachments).to.eql([]);",
-							"})",
-							"",
-							"pm.environment.set(\"CARD_ID\", response.id);",
-							""
-						],
-						"type": "text/javascript"
-					}
+			"event": [{
+				"listen": "test",
+				"script": {
+					"exec": [
+						"pm.test('Status 200', function () {",
+						"\tpm.response.to.have.status(200);",
+						"})",
+						"",
+						"var response = pm.response.json();",
+						"",
+						"pm.test('card Name is Lean Postman', function () {",
+						"    pm.expect(response.name).to.eql(\"Learn Postman\");",
+						"})",
+						"",
+						"pm.test('Is card assined to the correct Board', function () {",
+						"    pm.expect(response.idBoard).to.eql(pm.environment.get(\"BOARD_ID\"));",
+						"})",
+						"",
+						"pm.test('Is card assined to the correct List', function () {",
+						"    pm.expect(response.idList).to.eql(pm.environment.get(\"LIST_ID\"));",
+						"})",
+						"",
+						"pm.test('Card has no votes or attachments', function () {",
+						"    pm.expect(response.votes).to.eql(undefined);",
+						"    pm.expect(response.attachments).to.eql([]);",
+						"})",
+						"",
+						"pm.environment.set(\"CARD_ID\", response.id);",
+						""
+					],
+					"type": "text/javascript"
 				}
-			],
+			}],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -352,35 +334,33 @@
 		},
 		{
 			"name": "CREATE  New Checklist Item",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test('Status 200', function () {",
-							"\tpm.response.to.have.status(200);",
-							"})",
-							"",
-							"var response = pm.response.json();",
-							"",
-							"pm.test('Checklist name is correct', function () {",
-							"    pm.expect(response.name).to.eql(\"Complete postman udemy course\");",
-							"})",
-							"",
-							"pm.test('Is card assined to the correct card', function () {",
-							"    pm.expect(response.idCard).to.eql(pm.environment.get(\"CARD_ID\"));",
-							"})",
-							"",
-							"pm.test('Is card assined to the correct List', function () {",
-							"    pm.expect(response.idoard).to.eql(pm.environment.get(\"BOARD_ID\"));",
-							"})",
-							"",
-							""
-						],
-						"type": "text/javascript"
-					}
+			"event": [{
+				"listen": "test",
+				"script": {
+					"exec": [
+						"pm.test('Status 200', function () {",
+						"\tpm.response.to.have.status(200);",
+						"})",
+						"",
+						"var response = pm.response.json();",
+						"",
+						"pm.test('Checklist name is correct', function () {",
+						"    pm.expect(response.name).to.eql(\"Complete postman udemy course\");",
+						"})",
+						"",
+						"pm.test('Is card assined to the correct card', function () {",
+						"    pm.expect(response.idCard).to.eql(pm.environment.get(\"CARD_ID\"));",
+						"})",
+						"",
+						"pm.test('Is card assined to the correct List', function () {",
+						"    pm.expect(response.idoard).to.eql(pm.environment.get(\"BOARD_ID\"));",
+						"})",
+						"",
+						""
+					],
+					"type": "text/javascript"
 				}
-			],
+			}],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -407,37 +387,35 @@
 		},
 		{
 			"name": "CREATE New List TESTING",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test('Status 200', function () {",
-							"\tpm.response.to.have.status(200);",
-							"})",
-							"",
-							"var response = pm.response.json();",
-							"",
-							"",
-							"pm.test('List Name is \"TESTING\"', function () {",
-							"    pm.expect(response.name).to.eql(\"TESTING\");",
-							"})",
-							"",
-							"pm.test('Board should be private', function () {",
-							"    pm.expect(response.closed).to.eql(false);",
-							"})",
-							"",
-							"pm.test(\"Check if limits are empty\", function () {",
-							"    pm.expect(response.limits).to.be.empty",
-							"});",
-							"",
-							"pm.environment.set(\"LIST_ID\", response.id);",
-							""
-						],
-						"type": "text/javascript"
-					}
+			"event": [{
+				"listen": "test",
+				"script": {
+					"exec": [
+						"pm.test('Status 200', function () {",
+						"\tpm.response.to.have.status(200);",
+						"})",
+						"",
+						"var response = pm.response.json();",
+						"",
+						"",
+						"pm.test('List Name is \"TESTING\"', function () {",
+						"    pm.expect(response.name).to.eql(\"TESTING\");",
+						"})",
+						"",
+						"pm.test('Board should be private', function () {",
+						"    pm.expect(response.closed).to.eql(false);",
+						"})",
+						"",
+						"pm.test(\"Check if limits are empty\", function () {",
+						"    pm.expect(response.limits).to.be.empty",
+						"});",
+						"",
+						"pm.environment.set(\"LIST_ID\", response.id);",
+						""
+					],
+					"type": "text/javascript"
 				}
-			],
+			}],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -458,20 +436,17 @@
 					"path": [
 						"lists"
 					],
-					"query": [
-						{
-							"key": "idBoard",
-							"value": "{{BOARD_ID}}"
-						}
-					]
+					"query": [{
+						"key": "idBoard",
+						"value": "{{BOARD_ID}}"
+					}]
 				}
 			},
 			"response": []
 		},
 		{
 			"name": "GET List TESTING",
-			"event": [
-				{
+			"event": [{
 					"listen": "test",
 					"script": {
 						"exec": [
@@ -505,13 +480,11 @@
 			},
 			"request": {
 				"method": "GET",
-				"header": [
-					{
-						"key": "",
-						"value": "",
-						"type": "text"
-					}
-				],
+				"header": [{
+					"key": "",
+					"value": "",
+					"type": "text"
+				}],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"key\": \"{{TRELLO_KEY}}\",\n    \"token\":\"{{TRELLO_TOKEN}}\"\n}",
@@ -530,38 +503,34 @@
 						"lists",
 						":{{LIST_ID}}"
 					],
-					"variable": [
-						{
-							"key": "{{LIST_ID}}",
-							"value": null
-						}
-					]
+					"variable": [{
+						"key": "{{LIST_ID}}",
+						"value": null
+					}]
 				}
 			},
 			"response": []
 		},
 		{
 			"name": "PUT Move Card",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test('Status 200', function () {",
-							"\tpm.response.to.have.status(200);",
-							"})",
-							"",
-							"var response = pm.response.json();",
-							"",
-							"pm.test(\"Correct List Location\", function () {",
-							"    pm.expect(response.idList).to.eql(pm.environment.get(\"LIST_ID\"));",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
+			"event": [{
+				"listen": "test",
+				"script": {
+					"exec": [
+						"pm.test('Status 200', function () {",
+						"\tpm.response.to.have.status(200);",
+						"})",
+						"",
+						"var response = pm.response.json();",
+						"",
+						"pm.test(\"Correct List Location\", function () {",
+						"    pm.expect(response.idList).to.eql(pm.environment.get(\"LIST_ID\"));",
+						"});",
+						""
+					],
+					"type": "text/javascript"
 				}
-			],
+			}],
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -583,20 +552,17 @@
 						"cards",
 						":{{CARD_ID}}"
 					],
-					"variable": [
-						{
-							"key": "{{CARD_ID}}",
-							"value": "{{CARD_ID}}"
-						}
-					]
+					"variable": [{
+						"key": "{{CARD_ID}}",
+						"value": "{{CARD_ID}}"
+					}]
 				}
 			},
 			"response": []
 		},
 		{
 			"name": "DELETE Board",
-			"event": [
-				{
+			"event": [{
 					"listen": "prerequest",
 					"script": {
 						"exec": [
@@ -644,12 +610,10 @@
 						"boards",
 						":{{BOARD_ID}}"
 					],
-					"variable": [
-						{
-							"key": "{{BOARD_ID}}",
-							"value": "{{BOARD_ID}}"
-						}
-					]
+					"variable": [{
+						"key": "{{BOARD_ID}}",
+						"value": "{{BOARD_ID}}"
+					}]
 				}
 			},
 			"response": []
