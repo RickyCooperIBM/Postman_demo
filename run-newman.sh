@@ -8,6 +8,7 @@ echo "NPM Version:        " `npm -v`
 echo "Old Newman Version: " `newman --version`
 
 echo "  Install newest newman version."
+ls
 npm install newman newman-reporter-htmlextra --global --no-spin
 
 echo "New Newman Version: " `newman --version`
