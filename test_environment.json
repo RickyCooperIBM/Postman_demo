@@ -1,8 +1,7 @@
 {
 	"id": "8717564a-4d21-4457-9cfa-4f592369181e",
 	"name": "TRELLO_ENV",
-	"values": [
-		{
+	"values": [{
 			"key": "TRELLO_KEY",
 			"value": "YOUR KEY ",
 			"enabled": true
